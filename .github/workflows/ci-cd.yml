@@ -54,3 +54,6 @@ jobs:
                 echo "Deployment successful"
             - name: show running containers
               run: docker ps | grep python-app
+            - name: show recent container logs on failure
+              if: failure()
+              run: docker logs --tail 100 python-app || true

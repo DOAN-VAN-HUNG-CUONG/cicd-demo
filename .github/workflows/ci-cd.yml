@@ -41,9 +41,9 @@ jobs:
         if: github.ref == 'refs/heads/main'
 
         steps:
-            - name: stop old container
+            - name: remove old container
               run: |
-                 docker stop python-app || true
+                 docker rm -f python-app || true
             - name: start new container
               run: |
                  docker run -d --name python-app -p 5001:5001 --restart unless-stopped ci-cd-demo:latest
